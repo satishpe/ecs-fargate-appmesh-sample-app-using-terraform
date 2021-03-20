@@ -1,0 +1,145 @@
+resource "aws_service_discovery_service" "scheduler" {
+  name = "scheduler"
+  //name = "scheduler.${var.service_domain}"
+   dns_config {
+     namespace_id = aws_service_discovery_private_dns_namespace.main.id
+     dns_records {
+       ttl  = 10
+       type = "A"
+     }
+     routing_policy = "MULTIVALUE"
+   }
+
+
+  #  dns_config {
+  #   namespace_id = aws_service_discovery_private_dns_namespace.main.id
+  #   dns_records {
+  #     ttl  = 10
+  #     type = "CNAME"
+  #   }
+  #   routing_policy = "WEIGHTED"
+  # }
+
+
+
+
+  health_check_custom_config {
+    failure_threshold = 1
+  }
+}
+
+resource "aws_appmesh_virtual_node" "scheduler" {
+  name      = "scheduler"
+  mesh_name = aws_appmesh_mesh.main.name
+  spec {   
+    listener {
+      port_mapping {
+        port     = var.scheduler_svc_port
+        protocol = "http"
+      }
+      health_check {
+        port     = var.scheduler_svc_port
+        protocol            = "http"
+        path                = "/api/Healthcheck"
+        healthy_threshold   = 2
+        unhealthy_threshold = 2
+        timeout_millis      = 2000
+        interval_millis     = 5000
+      }
+
+    }
+    service_discovery {
+      aws_cloud_map {
+        service_name   = aws_service_discovery_service.scheduler.name
+        namespace_name = aws_service_discovery_private_dns_namespace.main.name
+      }
+    }
+
+  }
+
+}
+
+resource "aws_appmesh_virtual_router" "scheduler" {
+  name      = "scheduler-router"
+  mesh_name = aws_appmesh_mesh.main.name
+  spec {
+    listener {
+      port_mapping {
+        port     = "80"
+        protocol = "http"
+      }
+    }
+  }
+}
+
+resource "aws_appmesh_route" "scheduler" {
+  name                = "scheduler-route"
+  mesh_name           = aws_appmesh_mesh.main.name
+  virtual_router_name = aws_appmesh_virtual_router.scheduler.name
+
+ spec {
+    http_route {
+      match {
+        prefix = "/"
+      }
+
+      retry_policy {
+        http_retry_events = [
+          "server-error",
+        ]
+        max_retries = 1
+
+        per_retry_timeout {
+          unit  = "s"
+          value = 15
+        }
+      }
+
+
+       action {
+        weighted_target {
+          virtual_node = aws_appmesh_virtual_node.scheduler.name
+          weight       = var.scheduler_blue_percent
+        }
+        weighted_target {
+          virtual_node = aws_appmesh_virtual_node.scheduler-green.name
+          weight       = var.scheduler_green_percent
+        }
+
+      }
+    }
+  }
+}
+
+
+resource "aws_appmesh_virtual_service" "scheduler" {
+  name      = "scheduler.appmesh.${var.service_domain}"
+  mesh_name = aws_appmesh_mesh.main.name
+  spec {
+    provider {
+      virtual_router {
+        virtual_router_name = aws_appmesh_virtual_router.scheduler.name
+      }
+    }
+  }
+}
+
+module "scheduler" {
+  source            = "./../"
+  region            = var.region
+  app_name          = "scheduler"
+  app_port          = var.scheduler_svc_port
+  env               = var.Environment
+  vpc               = module.vpc
+  //app_image         = "226767807331.dkr.ecr.us-west-2.amazonaws.com/colorteller:latest"
+  app_image         = "${var.ecr_url}/${var.scheduler_ecr_img}:${var.Environment}"
+  cloudmap_service  = aws_service_discovery_service.scheduler
+  aws_appmesh_virtual_node = aws_appmesh_virtual_node.scheduler.name
+  appmesh           = aws_appmesh_mesh.main
+  prefix            = var.Stack
+  tags              = var.tags
+  ecsCluster        = var.ecsCluster
+  min_app_count     = var.scheduler_min_task
+  ssm_splunk_url = var.ssm_splunk_url
+  ssm_splunk_token = var.ssm_splunk_token
+}

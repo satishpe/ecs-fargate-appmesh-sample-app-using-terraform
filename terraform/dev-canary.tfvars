@@ -1,0 +1,16 @@
+nike_green_percent = "50"
+nike_blue_percent = "50"
+defib_green_percent = "50"
+defib_blue_percent = "50"
+defib_min_task = "1"
+nike_min_task = "1"
+defib_green_min_task = "1"
+nike_green_min_task = "1"
+gateway_min_task = "1"
+gateway_green_min_task = "1"
+scheduler_green_percent = "10"
+scheduler_blue_percent = "90"
+scheduler_min_task = "1"
+scheduler_green_min_task = "1"
+
+

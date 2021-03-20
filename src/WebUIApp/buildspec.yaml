@@ -1,0 +1,69 @@
+version: 0.2
+
+env:
+  #variables:
+     # key: "value"
+     # key: "value"
+  #parameter-store:
+     # key: "value"
+     # key: "value"
+  #secrets-manager:
+     # key: secret-id:json-key:version-stage:version-id
+     # key: secret-id:json-key:version-stage:version-id
+  exported-variables:
+     - CODEBUILD_BUILD_NUMBER
+     # - variable
+  #git-credential-helper: yes
+#batch:
+  #fast-fail: true
+  #build-list:
+  #build-matrix:
+  #build-graph:
+phases:
+  install:
+    #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
+    #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
+    #runtime-versions:
+      # name: version
+      # name: version
+    commands:
+        #- nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2 &
+        #- timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
+        - ls -lart
+        - pwd
+      # - command
+      # - command
+  #pre_build:
+    #commands:
+      # - command
+      # - command
+  build:
+    commands:
+       - echo "hello" > /tmp/hello.txt
+       - cd WebUIApp
+       - docker build . -t 173341415789.dkr.ecr.us-east-2.amazonaws.com/apm-aod2-dev-nike-ecr:$CODEBUILD_BUILD_NUMBER
+       #- docker build -f Dockerfile .. -t 173341415789.dkr.ecr.us-east-2.amazonaws.com/apm-aod2-dev-nike-ecr:$CODEBUILD_BUILD_NUMBER 
+       - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 173341415789.dkr.ecr.us-east-2.amazonaws.com
+       - docker push 173341415789.dkr.ecr.us-east-2.amazonaws.com/apm-aod2-dev-nike-ecr:$CODEBUILD_BUILD_NUMBER
+  #post_build:
+    #commands:
+      # - command
+      # - command
+#reports:
+  #report-name-or-arn:
+    #files:
+      # - location
+      # - location
+    #base-directory: location
+    #discard-paths: yes
+    #file-format: JunitXml | CucumberJson
+artifacts:
+  files:
+     - /tmp/hello.txt
+    # - location
+  #name: $(date +%Y-%m-%d)
+  #discard-paths: yes
+  #base-directory: location
+#cache:
+  #paths:
+    # - paths

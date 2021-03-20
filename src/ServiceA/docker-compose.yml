@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  colorservice:
+    image: ${DOCKER_REGISTRY-}colorservice
+    build:
+      context: .
+      dockerfile: ./Dockerfile

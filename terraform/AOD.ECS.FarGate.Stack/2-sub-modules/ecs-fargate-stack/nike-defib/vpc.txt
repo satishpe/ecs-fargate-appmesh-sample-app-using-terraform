@@ -1,0 +1,98 @@
+# # creating VPC
+# module "vpc" {
+#   source  = "terraform-aws-modules/vpc/aws"
+#   version = "2.63.0" 
+
+#   name = var.envPrefixName
+#   cidr = "10.0.0.0/16"
+
+#   azs             = ["${var.region}a","${var.region}b"]
+
+#   private_subnets = ["10.0.51.0/24","10.0.52.0/24"]
+#   public_subnets  = ["10.0.1.0/24","10.0.2.0/24"]
+
+#   enable_nat_gateway     = true
+#   single_nat_gateway     = false
+#   one_nat_gateway_per_az = true
+
+#   tags              = var.tags
+
+#   # lifecycle {
+#   #   create_before_destroy = true
+#   # }
+
+# }
+
+
+data "aws_vpc" "foundation" {
+  id = "vpc-05489dab4bb840c3d"
+}
+
+data "aws_availability_zones" "all_zones" {
+  state = "available"
+}
+
+# data "aws_subnet" "prisubnet1" {
+#   vpc_id = data.aws_vpc.foundation.id
+#   filter {
+#     name   = "tag:Name"
+#     values = [ join ("-", [var.envPrefixName,"private",data.aws_availability_zones.all_zones.names[0]] ) ]
+#   }
+# }
+
+# data "aws_subnet" "prisubnet2" {
+#   vpc_id = data.aws_vpc.foundation.id
+#   filter {
+#     name   = "tag:Name"
+#     values = [ join ("-", [var.envPrefixName,"private",data.aws_availability_zones.all_zones.names[1]] ) ]
+#   }
+# }
+
+
+# data "aws_subnet" "pubsubnet1" {
+#   vpc_id = data.aws_vpc.foundation.id
+#   filter {
+#     name   = "tag:Name"
+#     values = [ join ("-", [var.envPrefixName,"public",data.aws_availability_zones.all_zones.names[0]] ) ]
+#   }
+# }
+
+# data "aws_subnet" "pubsubnet2" {
+#   vpc_id = data.aws_vpc.foundation.id
+#   filter {
+#     name   = "tag:Name"
+#     values = [ join ("-", [var.envPrefixName,"public",data.aws_availability_zones.all_zones.names[1]] ) ]
+#   }
+# }
+
+data "aws_subnet_ids" "private_subnets" {
+  vpc_id = data.aws_vpc.foundation.id
+
+  tags = {
+    Tier = "Private"
+  }
+}
+
+data "aws_subnet_ids" "public_subnets" {
+  vpc_id = data.aws_vpc.foundation.id
+
+  tags = {
+    Tier = "Public"
+  }
+}
+
+data "aws_subnet" "private_subnets_cidr_blocks" {
+   vpc_id = data.aws_vpc.foundation.id
+
+tags = {
+    Tier = "Private"
+  }
+}
+
+data "aws_subnet" "public_subnets_cidr_blocks" {
+   vpc_id = data.aws_vpc.foundation.id
+
+tags = {
+    Tier = "Public"
+  }
+}

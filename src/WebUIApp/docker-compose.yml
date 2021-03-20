@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  webuicolorclient:
+    image: ${DOCKER_REGISTRY-}webuicolorclient
+    build:
+      context: .
+      dockerfile: ./Dockerfile

@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "ORH5Q/iqRExMmYC5q2cx9+5KVU7F7MdupXBVHMMcOYLLhXAabAcV5bNJtpejX6JzmV9bARev+izD1JWuuGTiYg==",
+  "success": true,
+  "projectFilePath": "/Users/satishpe/Documents/Projects/color-service-client-dotnet-core-sample/ServiceA/ColorService.csproj",
+  "expectedPackageFiles": [
+    "/Users/satishpe/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/Users/satishpe/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/satishpe/.nuget/packages/microsoft.visualstudio.azure.containers.tools.targets/1.10.9/microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512",
+    "/Users/satishpe/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "/Users/satishpe/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "/Users/satishpe/.nuget/packages/swashbuckle.aspnetcore.swaggergen/5.6.3/swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "/Users/satishpe/.nuget/packages/swashbuckle.aspnetcore.swaggerui/5.6.3/swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}

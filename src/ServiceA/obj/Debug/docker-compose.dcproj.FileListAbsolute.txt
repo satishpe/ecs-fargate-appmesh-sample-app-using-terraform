@@ -1,0 +1,14 @@
+/Users/satishpe/Documents/Projects/color-service-client-dotnet-core-sample/ServiceA/bin/Debug/ColorService.deps.json
+/Users/satishpe/Documents/Projects/color-service-client-dotnet-core-sample/ServiceA/bin/Debug/ColorService.runtimeconfig.json
+/Users/satishpe/Documents/Projects/color-service-client-dotnet-core-sample/ServiceA/bin/Debug/ColorService.runtimeconfig.dev.json
+/Users/satishpe/Documents/Projects/color-service-client-dotnet-core-sample/ServiceA/bin/Debug/appsettings.Development.json
+/Users/satishpe/Documents/Projects/color-service-client-dotnet-core-sample/ServiceA/bin/Debug/appsettings.json
+/Users/satishpe/Documents/Projects/color-service-client-dotnet-core-sample/ServiceA/bin/Debug/ColorService.dll
+/Users/satishpe/Documents/Projects/color-service-client-dotnet-core-sample/ServiceA/bin/Debug/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/satishpe/Documents/Projects/color-service-client-dotnet-core-sample/ServiceA/bin/Debug/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/satishpe/Documents/Projects/color-service-client-dotnet-core-sample/ServiceA/bin/Debug/Swashbuckle.AspNetCore.Swagger.dll
+/Users/satishpe/Documents/Projects/color-service-client-dotnet-core-sample/ServiceA/bin/Debug/Microsoft.OpenApi.dll
+/Users/satishpe/Documents/Projects/color-service-client-dotnet-core-sample/ServiceA/bin/Debug/ColorService.pdb
+/Users/satishpe/Documents/Projects/color-service-client-dotnet-core-sample/ServiceA/obj/Debug/docker-compose.dcprojAssemblyReference.cache
+/Users/satishpe/Documents/Projects/color-service-client-dotnet-core-sample/ServiceA/obj/Debug/docker-compose.dcproj.CoreCompileInputs.cache
+/Users/satishpe/Documents/Projects/color-service-client-dotnet-core-sample/ServiceA/obj/Debug/docker-compose.dcproj.CopyComplete

@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/Users/satishpe/.dotnet/store/|arch|/|tfm|",
+      "/Users/satishpe/.nuget/packages"
+    ]
+  }
+}
