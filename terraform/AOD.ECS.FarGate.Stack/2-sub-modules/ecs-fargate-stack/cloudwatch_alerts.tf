@@ -32,7 +32,7 @@ resource "aws_cloudwatch_metric_alarm" "service_cpu_high" {
   // dimensions for alert
   dimensions = {
     //ClusterName = aws_ecs_cluster.main.name
-    ClusterName = data.aws_ecs_cluster.main.cluster_name
+    ClusterName = aws_ecs_cluster.main.cluster_name
     ServiceName = aws_ecs_service.main.name
   }
 
@@ -65,7 +65,7 @@ resource "aws_cloudwatch_metric_alarm" "service_cpu_low" {
   // dimensions for alert
   dimensions = {
     //ClusterName = aws_ecs_cluster.main.name
-    ClusterName = data.aws_ecs_cluster.main.cluster_name
+    ClusterName = aws_ecs_cluster.main.cluster_name
     ServiceName = aws_ecs_service.main.name
   }
 
