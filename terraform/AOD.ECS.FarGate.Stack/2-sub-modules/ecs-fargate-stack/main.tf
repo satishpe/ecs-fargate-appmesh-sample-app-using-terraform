@@ -8,25 +8,26 @@ This file will create following:
   - ecs service
 */
 
-/*
+
 // create aws_ecs_cluster with input name
 resource "aws_ecs_cluster" "main" {
   // set name for ecs cluster
-  name = "${var.env}-${var.app_name}-cluster"
+  name = var.ecsCluster
   // set tags for cluster
   tags = var.tags
 }
 
 
-*/
 
 
 
+
+/*
  data "aws_ecs_cluster" "main" {
     cluster_name = var.ecsCluster
  }
 
-
+*/
 
 // creating secret manager json defined in: ./templates/secrets_tmp.json.tpl
 data "template_file" "secrets_tmp" {
@@ -153,8 +154,8 @@ resource "aws_ecs_service" "main" {
   // set a name for service
   name            = "${var.prefix}-${var.env}-${var.app_name}-service"
   // add service to cluster
-  //cluster         = aws_ecs_cluster.main.id
-  cluster         = data.aws_ecs_cluster.main.arn
+  cluster         = aws_ecs_cluster.main.id
+  //cluster         = data.aws_ecs_cluster.main.arn
   // add task definition 
   task_definition = aws_ecs_task_definition.main.id
   // set the desired count
