@@ -7,7 +7,7 @@ terraform {
 
 
   backend "s3" {
-    bucket         = "awsxmpl-aod-cicd-poc"
+    bucket         = "awsxmpl-aod-cicd-poc-2"
     key            = "AOD.ECS.FarGate.Stack/terraform.tfstate"
     region         = "us-east-2"
     dynamodb_table = "awsxmpl-aod-cicd-terraform-locks"
