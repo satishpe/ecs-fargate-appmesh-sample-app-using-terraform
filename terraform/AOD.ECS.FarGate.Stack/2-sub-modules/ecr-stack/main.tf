@@ -20,6 +20,7 @@ resource "aws_ecr_repository" "defib_ecr" {
    tags = var.resourceTags
 }
 
+/* 
 resource "aws_ecr_repository" "scheduler_ecr" {
   name                 = "${var.envPrefix}-scheduler-ecr"
   image_tag_mutability = "MUTABLE"
@@ -62,3 +63,5 @@ resource "aws_ecs_cluster" "main" {
   // set tags for cluster
   tags = var.tags
 }
+
+*/
