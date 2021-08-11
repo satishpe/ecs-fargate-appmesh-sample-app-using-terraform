@@ -16,7 +16,7 @@ resource "aws_appautoscaling_target" "target" {
   service_namespace  = "ecs"
   // resource id for fargate service
   //resource_id        = "service/${aws_ecs_cluster.main.name}/${aws_ecs_service.main.name}"
-  resource_id        = "service/${aws_ecs_cluster.main.cluster_name}/${aws_ecs_service.main.name}"
+  resource_id        = "service/${aws_ecs_cluster.main.name}/${aws_ecs_service.main.name}"
   // scale dimension for service. set minimum to 1 and max to 10
   scalable_dimension = "ecs:service:DesiredCount"
   // minimum running services 
@@ -33,7 +33,7 @@ resource "aws_appautoscaling_policy" "up" {
   service_namespace  = "ecs"
   // set resource id from fargate service
   //resource_id        = "service/${aws_ecs_cluster.main.name}/${aws_ecs_service.main.name}"
-  resource_id        = "service/${aws_ecs_cluster.main.cluster_name}/${aws_ecs_service.main.name}"
+  resource_id        = "service/${aws_ecs_cluster.main.name}/${aws_ecs_service.main.name}"
   // scale dimensions
   scalable_dimension = "ecs:service:DesiredCount"
 
@@ -62,7 +62,7 @@ resource "aws_appautoscaling_policy" "down" {
   service_namespace  = "ecs"
   // set resource id from fargate service
   //resource_id        = "service/${aws_ecs_cluster.main.name}/${aws_ecs_service.main.name}"
-  resource_id        = "service/${aws_ecs_cluster.main.cluster_name}/${aws_ecs_service.main.name}"
+  resource_id        = "service/${aws_ecs_cluster.main.name}/${aws_ecs_service.main.name}"
   // scale dimensions
   scalable_dimension = "ecs:service:DesiredCount"
 
