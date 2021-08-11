@@ -124,8 +124,9 @@ resource "aws_ecs_service" "main" {
   // set a name for service
   name            = "${var.prefix}-${var.env}-${var.app_name}-service"
   // add service to cluster
-  //cluster         = aws_ecs_cluster.main.id
-  cluster         = data.aws_ecs_cluster.main.arn
+  cluster         = aws_ecs_cluster.main.id
+  //cluster         = data.aws_ecs_cluster.main.arn
+
   // add task definition 
   task_definition = aws_ecs_task_definition.main.id
   // set the desired count
