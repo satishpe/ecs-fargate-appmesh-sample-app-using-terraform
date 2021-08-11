@@ -8,8 +8,8 @@ This file defines the output variables for this module
 // ECS output variables
 output "ecs_cluster_arn" {
   description = "ECS cluster arn"
-  //value       = aws_ecs_cluster.main.arn
-  value       = data.aws_ecs_cluster.main.arn
+  value       = aws_ecs_cluster.main.arn
+  //value       = data.aws_ecs_cluster.main.arn
 }
 
 output "ecs_service_arn" {
