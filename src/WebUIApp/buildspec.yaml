@@ -41,7 +41,7 @@ phases:
   build:
     commands:
        - echo "hello" > /tmp/hello.txt
-       - cd WebUIApp
+       - cd src/WebUIApp
        - docker build . -t ${AWS_ACCOUNT}.dkr.ecr.us-east-2.amazonaws.com/apm-aod2-dev-nike-ecr:$CODEBUILD_BUILD_NUMBER
        #- docker build -f Dockerfile .. -t ${AWS_ACCOUNT}.dkr.ecr.us-east-2.amazonaws.com/apm-aod2-dev-nike-ecr:$CODEBUILD_BUILD_NUMBER 
        - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin ${AWS_ACCOUNT}.dkr.ecr.us-east-2.amazonaws.com
