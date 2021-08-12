@@ -144,7 +144,8 @@ module "nike-green" {
   env               = var.Environment
   vpc               = module.vpc
   //app_image         = "226767807331.dkr.ecr.us-west-2.amazonaws.com/colorteller:latest"
-  app_image         = "${var.ecr_url}/${var.nike_ecr_img}:${var.Environment}-green"
+  //app_image         = "${var.ecr_url}/${var.nike_ecr_img}:${var.Environment}-green"
+  app_image         = "${var.ecr_url}/${var.nike_ecr_img}:2"
   cloudmap_service  = aws_service_discovery_service.nike-green
   aws_appmesh_virtual_node = aws_appmesh_virtual_node.nike-green.name
   appmesh           = aws_appmesh_mesh.main
