@@ -1,8 +1,8 @@
 version: 0.2
 
 env:
-  #variables:
-     # key: "value"
+  variables:
+     AWS_ACCOUNT: "570194497822"
      # key: "value"
   #parameter-store:
      # key: "value"
@@ -41,10 +41,10 @@ phases:
     commands:
        - echo "hello" > /tmp/hello.txt
        - cd ServiceA
-       - docker build . -t 173341415789.dkr.ecr.us-east-2.amazonaws.com/apm-aod2-dev-defib-ecr:$CODEBUILD_BUILD_NUMBER
-       #- docker build -f Dockerfile .. -t 173341415789.dkr.ecr.us-east-2.amazonaws.com/apm-aod2-dev-nike-ecr:$CODEBUILD_BUILD_NUMBER 
-       - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 173341415789.dkr.ecr.us-east-2.amazonaws.com
-       - docker push 173341415789.dkr.ecr.us-east-2.amazonaws.com/apm-aod2-dev-defib-ecr:$CODEBUILD_BUILD_NUMBER
+       - docker build . -t ${AWS_ACCOUNT}.dkr.ecr.us-east-2.amazonaws.com/apm-aod2-dev-defib-ecr:$CODEBUILD_BUILD_NUMBER
+       #- docker build -f Dockerfile .. -t ${AWS_ACCOUNT}.dkr.ecr.us-east-2.amazonaws.com/apm-aod2-dev-nike-ecr:$CODEBUILD_BUILD_NUMBER 
+       - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin ${AWS_ACCOUNT}.dkr.ecr.us-east-2.amazonaws.com
+       - docker push ${AWS_ACCOUNT}.dkr.ecr.us-east-2.amazonaws.com/apm-aod2-dev-defib-ecr:$CODEBUILD_BUILD_NUMBER
   #post_build:
     #commands:
       # - command
