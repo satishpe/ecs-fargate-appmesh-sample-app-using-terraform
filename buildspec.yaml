@@ -24,6 +24,7 @@ phases:
       - if [ `terraform workspace list | grep dev| wc -l` -eq 0 ] ; then  echo "Dev not found" ; terraform workspace new dev;  else echo "Dev workspace found" ; fi
       - terraform workspace select dev
       - terraform init 
-      - terraform plan -out aod-iac-terraform -var-file=../../${TFVARS_COMMON} -var-file=../../${TFVARS_CUSTOM}
-      - terraform apply aod-iac-terraform
+      - #terraform plan -out aod-iac-terraform -var-file=../../${TFVARS_COMMON} -var-file=../../${TFVARS_CUSTOM}
+      - #terraform apply aod-iac-terraform
+      - terraform destroy  -var-file=../../${TFVARS_COMMON} -var-file=../../${TFVARS_CUSTOM}
 
