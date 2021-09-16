@@ -26,5 +26,5 @@ phases:
       - terraform init 
       - #terraform plan -out aod-iac-terraform -var-file=../../${TFVARS_COMMON} -var-file=../../${TFVARS_CUSTOM}
       - #terraform apply aod-iac-terraform
-      - terraform destroy  -var-file=../../${TFVARS_COMMON} -var-file=../../${TFVARS_CUSTOM}
+      - terraform destroy -auto-approve -var-file=../../${TFVARS_COMMON} -var-file=../../${TFVARS_CUSTOM}
 
